@@ -67,15 +67,20 @@
         .tours-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin-top: 30px;
         }
         
         .tour-card {
             background: white;
             border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .tour-card:hover {
+            transform: translateY(-5px);
         }
         
         .tour-image {
@@ -83,89 +88,85 @@
             height: 200px;
             object-fit: cover;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .tour-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             margin: 10px 0;
             color: #2c3e50;
         }
         
         .tour-price {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             color: #e74c3c;
-            margin: 10px 0;
+            margin: 15px 0;
+        }
+        
+        .tour-duration {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
         }
         
         .tour-description {
             color: #666;
-            margin: 10px 0;
-            line-height: 1.4;
+            margin: 15px 0;
+            line-height: 1.5;
+            font-size: 14px;
         }
         
         .btn {
             background: #e74c3c;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 0;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
             font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
         }
         
         footer {
             background: #2c3e50;
             color: white;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 30px;
+            margin-top: 50px;
         }
         
-        .filters {
-            display: flex;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        select {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
-     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="https://avatars.mds.yandex.net/i?id=9e9e9977fef1082fe0316fedf3643827_l-5313038-images-thumbs&n=13=" alt="Логотип">
-                    <span>Czech Travel</span>
-                </div>
-                <button class="mobile-menu-btn">☰</button>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Главная</a></li>
-                        <li><a href="tours.html"class="active">Туры</a></li>
-                        <li><a href="about.html">О Чехии</a></li>
-                        <li><a href="booking.html">Бронирование</a></li>
-                        <li><a href="reviews.html">Отзывы</a></li>
-                    </ul>
-                </nav>
-            </div>
+    <header>
+        <div class="header-content">
+            <div class="logo">Czech Travel</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="tours.html" class="active">Туры</a></li>
+                    <li><a href="booking.html">Бронирование</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-
 
     <div class="container">
         <div class="page-title">
             <h1>Все туры в Чехию</h1>
-            <p>Выберите подходящий тур для вашего путешествия</p>
+            <p>12 уникальных программ для вашего идеального путешествия</p>
         </div>
 
         <div class="tours-grid" id="tours-container">
@@ -174,18 +175,19 @@
     </div>
 
     <footer>
-        <div class="container">
+        <div class="footer-content">
             <p>&copy; 2023 Czech Travel. Все права защищены.</p>
+            <p>Телефон: +7 (999) 123-45-67 | Email: info@czech-travel.ru</p>
         </div>
     </footer>
 
     <script>
-        // Данные туров
+        // Данные 12 туров
         const tours = [
             {
                 id: 1,
                 title: "Волшебная Прага",
-                description: "4-дневный тур по столице Чехии. Пражский Град, Карлов мост, Староместская площадь.",
+                description: "4-дневный тур по столице Чехии. Пражский Град, Карлов мост, Староместская площадь, Вышеград. Проживание в центре города.",
                 price: 25000,
                 duration: 4,
                 image: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
@@ -193,7 +195,7 @@
             {
                 id: 2,
                 title: "Чешский Крумлов",
-                description: "Сказочный город-заповедник с средневековым замком и извилистыми улочками.",
+                description: "Сказочный город-заповедник с средневековым замком. Извилистые улочки, традиционные рестораны, атмосфера старой Европы.",
                 price: 18000,
                 duration: 3,
                 image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
@@ -201,7 +203,7 @@
             {
                 id: 3,
                 title: "Карловы Вары",
-                description: "Знаменитый курорт с термальными источниками и уникальной архитектурой.",
+                description: "Знаменитый курорт с термальными источниками. Уникальная архитектура, лечебные процедуры, прогулки по колоннадам.",
                 price: 22000,
                 duration: 5,
                 image: "https://images.unsplash.com/photo-1598966735771-4c0e69c6f5b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
@@ -209,7 +211,7 @@
             {
                 id: 4,
                 title: "Брно и Моравский Край",
-                description: "Исследуйте второй город Чехии и знаменитые Моравские пещеры.",
+                description: "Исследуйте второй город Чехии и знаменитые Моравские пещеры. Замок Шпильберк, собор Святых Петра и Павла.",
                 price: 20000,
                 duration: 4,
                 image: "https://images.unsplash.com/photo-1588666309999-ef3c1c6f55fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
@@ -217,102 +219,111 @@
             {
                 id: 5,
                 title: "Пражские замки",
-                description: "Тур по знаменитым замкам вокруг Праги: Карлштейн, Конопиште.",
+                description: "Тур по знаменитым замкам вокруг Праги: Карлштейн, Конопиште, Крживоклат. Погружение в средневековую историю.",
                 price: 28000,
                 duration: 4,
                 image: "https://images.unsplash.com/photo-1547891657-e0c8ddd8b5c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
             },
             {
                 id: 6,
-                title: "Пивной тур",
-                description: "Посещение пивоварен Пльзень и дегустация лучших сортов пива.",
+                title: "Пивной тур по Чехии",
+                description: "Посещение знаменитых пивоварен Пльзень, Будвайзер. Дегустация лучших сортов пива, экскурсии по пивоварням.",
                 price: 30000,
                 duration: 5,
                 image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-            }
+            },
             {
                 id: 7,
                 title: "Зимняя Прага",
-                description: "Рождественские ярмарки, зимние пейзажи и уютные кафе в самом сердце Европы. Особенная атмосфера зимней сказки.",
+                description: "Рождественские ярмарки, зимние пейзажи и уютные кафе. Особенная атмосфера зимней сказки в сердце Европы.",
                 price: 27000,
                 duration: 4,
-                image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                features: ["Проживание в центре", "Рождественские ярмарки", "Теплые напитки и угощения"]
+                image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
             },
             {
                 id: 8,
                 title: "Чешская Швейцария",
-                description: "Национальный парк с уникальными скальными образованиями и живописными тропами. Правчицкие ворота - символ парка.",
+                description: "Национальный парк с уникальными скальными образованиями. Правчицкие ворота, живописные тропы, природные красоты.",
                 price: 24000,
                 duration: 3,
-                image: "https://images.unsplash.com/photo-1593693397697-15c5d69ac4e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                features: ["Проживание в кемпинге", "Пешие маршруты", "Экскурсия с гидом-натуралистом"]
+                image: "https://images.unsplash.com/photo-1593693397697-15c5d69ac4e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
             },
             {
                 id: 9,
                 title: "Кутна Гора и костница",
-                description: "Экскурсия в город с уникальной часовней, украшенной человеческими костями. Посещение собора Святой Варвары.",
+                description: "Экскурсия в город с уникальной часовней, украшенной человеческими костями. Собор Святой Варвары, исторический центр.",
                 price: 19000,
                 duration: 3,
-                image: "https://images.unsplash.com/photo-1580584126903-c17dab3041e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                features: ["Трансфер из Праги", "Входные билеты", "Обед в традиционной корчме"]
+                image: "https://images.unsplash.com/photo-1580584126903-c17dab3041e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
             },
             {
                 id: 10,
                 title: "Пражские каникулы",
-                description: "7-дневный тур с полным погружением в культуру, историю и кухню Праги. Все основные достопримечательности и скрытые жемчужины.",
+                description: "7-дневный тур с полным погружением в культуру и историю Праги. Все основные достопримечательности и скрытые жемчужины.",
                 price: 35000,
                 duration: 7,
-                image: "https://images.unsplash.com/photo-1556484687-3064c7c81c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                features: ["Проживание в отеле 4*", "Питание завтраки+ужины", "10 экскурсий", "Музейные билеты"]
+                image: "https://images.unsplash.com/photo-1556484687-3064c7c81c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
             },
             {
                 id: 11,
                 title: "Гастрономический тур",
-                description: "Знакомство с чешской кухней: кнедлики, вепрево колено, трдельник и многое другое. Кулинарные мастер-классы и дегустации.",
+                description: "Знакомство с чешской кухней: кнедлики, вепрево колено, трдельник. Кулинарные мастер-классы и дегустации.",
                 price: 26000,
                 duration: 4,
-                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                features: ["3 кулинарных мастер-класса", "Дегустации в 5 ресторанах", "Рецепты в подарок"]
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
             },
             {
                 id: 12,
                 title: "Романтический уикенд",
-                description: "Специальный тур для пар с проживанием в исторических отелях и романтическими ужинами. Прогулки на лодке по Влтаве.",
+                description: "Специальный тур для пар. Проживание в исторических отелях, романтические ужины, прогулки на лодке по Влтаве.",
                 price: 32000,
                 duration: 3,
-                image: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-                features: ["Романтический ужин", "Проживание в бутик-отеле", "Фотосессия", "Прогулка на лодке"]
+                image: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
             }
-        
         ];
 
         // Загрузка туров при открытии страницы
         document.addEventListener('DOMContentLoaded', function() {
-            showTours(tours);
+            showTours();
+        });
+
+        // Показать все туры
+        function showTours() {
+            const container = document.getElementById('tours-container');
+            container.innerHTML = '';
             
-            toursToShow.forEach(tour => {
+            tours.forEach(tour => {
                 const tourCard = `
                     <div class="tour-card">
                         <img src="${tour.image}" alt="${tour.title}" class="tour-image">
                         <div class="tour-title">${tour.title}</div>
+                        <div class="tour-duration">${tour.duration} ${getDaysText(tour.duration)}</div>
                         <div class="tour-price">${tour.price.toLocaleString()} руб.</div>
                         <div class="tour-description">${tour.description}</div>
-                        <div style="margin: 10px 0; color: #666;">${tour.duration} дня</div>
-                        <button class="btn" onclick="bookTour(${tour.id})">Забронировать</button>
+                        <button class="btn" onclick="bookTour(${tour.id})">Забронировать тур</button>
                     </div>
                 `;
                 container.innerHTML += tourCard;
             });
+        }
+
+        // Полуcorrect текст для количества дней
+        function getDaysText(days) {
+            if (days === 1) return 'день';
+            if (days >= 2 && days <= 4) return 'дня';
+            return 'дней';
+        }
 
         // Бронирование тура
         function bookTour(tourId) {
             const tour = tours.find(t => t.id === tourId);
             if (tour) {
-                alert(`Вы выбрали тур: ${tour.title}\nЦена: ${tour.price.toLocaleString()} руб.\n\nПереходим к бронированию...`);
-                window.location.href = `booking.html?tour=${tourId}`;
+                if (confirm(`Выбрать тур "${tour.title}"?\nЦена: ${tour.price.toLocaleString()} руб.\nДлительность: ${tour.duration} ${getDaysText(tour.duration)}`)) {
+                    window.location.href = `booking.html?tour=${tourId}`;
+                }
             }
         }
     </script>
 </body>
 </html>
+        
