@@ -159,24 +159,6 @@
             <p>Выберите подходящий тур для вашего путешествия</p>
         </div>
 
-        <div class="filters">
-            <select id="price-filter">
-                <option value="all">Любая цена</option>
-                <option value="20000">До 20 000 руб.</option>
-                <option value="25000">До 25 000 руб.</option>
-                <option value="30000">До 30 000 руб.</option>
-            </select>
-            
-            <select id="duration-filter">
-                <option value="all">Любая длительность</option>
-                <option value="3">3 дня</option>
-                <option value="4">4 дня</option>
-                <option value="5">5 дней</option>
-            </select>
-            
-            <button onclick="resetFilters()" class="btn" style="width: auto;">Сбросить</button>
-        </div>
-
         <div class="tours-grid" id="tours-container">
             <!-- Туры загружаются через JS -->
         </div>
@@ -239,21 +221,66 @@
                 duration: 5,
                 image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
             }
+            {
+                id: 7,
+                title: "Зимняя Прага",
+                description: "Рождественские ярмарки, зимние пейзажи и уютные кафе в самом сердце Европы. Особенная атмосфера зимней сказки.",
+                price: 27000,
+                duration: 4,
+                image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                features: ["Проживание в центре", "Рождественские ярмарки", "Теплые напитки и угощения"]
+            },
+            {
+                id: 8,
+                title: "Чешская Швейцария",
+                description: "Национальный парк с уникальными скальными образованиями и живописными тропами. Правчицкие ворота - символ парка.",
+                price: 24000,
+                duration: 3,
+                image: "https://images.unsplash.com/photo-1593693397697-15c5d69ac4e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                features: ["Проживание в кемпинге", "Пешие маршруты", "Экскурсия с гидом-натуралистом"]
+            },
+            {
+                id: 9,
+                title: "Кутна Гора и костница",
+                description: "Экскурсия в город с уникальной часовней, украшенной человеческими костями. Посещение собора Святой Варвары.",
+                price: 19000,
+                duration: 3,
+                image: "https://images.unsplash.com/photo-1580584126903-c17dab3041e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                features: ["Трансфер из Праги", "Входные билеты", "Обед в традиционной корчме"]
+            },
+            {
+                id: 10,
+                title: "Пражские каникулы",
+                description: "7-дневный тур с полным погружением в культуру, историю и кухню Праги. Все основные достопримечательности и скрытые жемчужины.",
+                price: 35000,
+                duration: 7,
+                image: "https://images.unsplash.com/photo-1556484687-3064c7c81c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                features: ["Проживание в отеле 4*", "Питание завтраки+ужины", "10 экскурсий", "Музейные билеты"]
+            },
+            {
+                id: 11,
+                title: "Гастрономический тур",
+                description: "Знакомство с чешской кухней: кнедлики, вепрево колено, трдельник и многое другое. Кулинарные мастер-классы и дегустации.",
+                price: 26000,
+                duration: 4,
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                features: ["3 кулинарных мастер-класса", "Дегустации в 5 ресторанах", "Рецепты в подарок"]
+            },
+            {
+                id: 12,
+                title: "Романтический уикенд",
+                description: "Специальный тур для пар с проживанием в исторических отелях и романтическими ужинами. Прогулки на лодке по Влтаве.",
+                price: 32000,
+                duration: 3,
+                image: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                features: ["Романтический ужин", "Проживание в бутик-отеле", "Фотосессия", "Прогулка на лодке"]
+            }
+        
         ];
 
         // Загрузка туров при открытии страницы
         document.addEventListener('DOMContentLoaded', function() {
             showTours(tours);
-            
-            // Добавляем обработчики для фильтров
-            document.getElementById('price-filter').addEventListener('change', filterTours);
-            document.getElementById('duration-filter').addEventListener('change', filterTours);
-        });
-
-        // Показать туры
-        function showTours(toursToShow) {
-            const container = document.getElementById('tours-container');
-            container.innerHTML = '';
             
             toursToShow.forEach(tour => {
                 const tourCard = `
@@ -268,32 +295,6 @@
                 `;
                 container.innerHTML += tourCard;
             });
-        }
-
-        // Фильтрация туров
-        function filterTours() {
-            const priceFilter = document.getElementById('price-filter').value;
-            const durationFilter = document.getElementById('duration-filter').value;
-            
-            let filteredTours = tours;
-            
-            if (priceFilter !== 'all') {
-                filteredTours = filteredTours.filter(tour => tour.price <= parseInt(priceFilter));
-            }
-            
-            if (durationFilter !== 'all') {
-                filteredTours = filteredTours.filter(tour => tour.duration === parseInt(durationFilter));
-            }
-            
-            showTours(filteredTours);
-        }
-
-        // Сброс фильтров
-        function resetFilters() {
-            document.getElementById('price-filter').value = 'all';
-            document.getElementById('duration-filter').value = 'all';
-            showTours(tours);
-        }
 
         // Бронирование тура
         function bookTour(tourId) {
