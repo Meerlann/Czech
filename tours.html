@@ -83,11 +83,15 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* УБРАТЬ max-width и margin: 0 auto если используете container */
+}
+
+/* ОСТАВИТЬ только если используете container */
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
 .logo {
     font-size: 24px;
     font-weight: bold;
