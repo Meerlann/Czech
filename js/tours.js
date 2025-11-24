@@ -88,7 +88,6 @@ javascript
         ];
 ];
 
-// Заполнение страницы с турами
 document.addEventListener('DOMContentLoaded', function() {
     const toursContainer = document.getElementById('tours-container');
     
