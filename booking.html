@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бронирование тура | Czech Travel</title>
     <style>
-        /* Базовые стили */
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #e74c3c;
@@ -84,7 +83,6 @@
             color: var(--secondary-color);
         }
 
-        /* Подчеркивание активной страницы */
         nav a.active::after {
             content: '';
             position: absolute;
@@ -104,7 +102,6 @@
             cursor: pointer;
         }
         
-        /* Основной контент */
         main {
             min-height: calc(100vh - 140px);
             padding: 40px 0;
@@ -126,7 +123,6 @@
             color: #666;
         }
         
-        /* Форма */
         .form-container {
             max-width: 800px;
             margin: 0 auto;
@@ -207,7 +203,6 @@
             display: none;
         }
         
-        /* Подвал */
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -247,7 +242,6 @@
             color: #bbb;
         }
         
-        /* Адаптивность */
         @media (max-width: 768px) {
             .header-content {
                 flex-wrap: wrap;
@@ -308,7 +302,6 @@
         </div>
     </header>
 
-    <!-- Основной контент -->
     <main>
         <div class="container">
             <div class="page-title">
@@ -322,7 +315,6 @@
                     <!-- Скрытое поле с основным поисковым запросом -->
                     <input type="hidden" name="q" value="search">
     
-    <!-- Информация о туре -->
     <div class="form-group">
         <label for="tour_name">Выберите тур:</label>
         <select id="tour_name" name="q" required>
@@ -347,7 +339,6 @@
         <input type="date" id="tour_date" name="date" value="2025-11-15" required>
     </div>
     
-    <!-- Информация о клиенте -->
     <div class="form-group">
         <label for="customer_name">Ваше ФИО:</label>
         <input type="text" id="customer_name" name="firstname" placeholder="Имя" required>
@@ -363,7 +354,6 @@
         <input type="email" id="customer_email" name="email" placeholder="Ваша почта" required>
     </div>
     
-    <!-- Параметры тура -->
     <div class="form-group">
         <label for="people_count">Количество человек:</label>
         <input type="number" id="people_count" name="rank" min="1" max="10" value="2" required>
@@ -387,13 +377,11 @@
         </div>
     </div>
     
-    <!-- Дополнительно -->
     <div class="form-group">
         <label for="comments">Дополнительные пожелания:</label>
         <textarea id="comments" name="comments" rows="3" placeholder="Ваши пожелания..."></textarea>
     </div>
     
-    <!-- Скрытые поля -->
     <input type="hidden" name="form_type" value="valorant_registration">
     
     <button type="submit" class="btn">Отправить заявку</button>
@@ -403,7 +391,6 @@
         </div>
     </main>
 
-    <!-- Подвал -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -423,7 +410,6 @@
     </footer>
 
     <script>
-        // Только мобильное меню
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const nav = document.querySelector('nav');
