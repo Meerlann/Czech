@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бронирование тура | Czech Travel</title>
+    <title>Туры в Чехию | Czech Travel</title>
     <style>
         /* Базовые стили */
         :root {
@@ -126,85 +126,102 @@
             color: #666;
         }
         
-        /* Форма */
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Сетка туров */
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .tour-card {
             background: white;
-            padding: 30px;
             border-radius: var(--border-radius);
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .form-group {
-            margin-bottom: 20px;
+        .tour-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+        .tour-image {
+            height: 200px;
+            overflow: hidden;
         }
         
-        input, select, textarea {
+        .tour-image img {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 16px;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
         
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
+        .tour-card:hover .tour-image img {
+            transform: scale(1.05);
         }
         
-        .radio-group {
+        .tour-content {
+            padding: 20px;
+        }
+        
+        .tour-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .tour-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .tour-details {
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #777;
         }
         
-        .radio-option {
+        .tour-duration, .tour-season {
             display: flex;
             align-items: center;
+            gap: 5px;
         }
         
-        .radio-option input {
-            width: auto;
-            margin-right: 5px;
+        .tour-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
         }
         
         .btn {
-            width: 100%;
-            padding: 12px;
+            display: inline-block;
+            padding: 10px 20px;
             background: var(--secondary-color);
             color: white;
             border: none;
             border-radius: var(--border-radius);
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
-            margin-top: 10px;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.3s ease;
         }
         
         .btn:hover {
             background: #c0392b;
         }
         
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-        
-        .success {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-            text-align: center;
-            display: none;
+        .btn-block {
+            display: block;
+            width: 100%;
         }
         
         /* Подвал */
@@ -280,9 +297,8 @@
                 font-size: 2rem;
             }
             
-            .radio-group {
-                flex-direction: column;
-                gap: 10px;
+            .tours-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -300,9 +316,9 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Главная</a></li>
-                        <li><a href="tours.html">Туры</a></li>
+                        <li><a href="tours.html" class="active">Туры</a></li>
                         <li><a href="https://travel.yandex.ru/journal/dostoprimechatelnosti-chehii/">О Чехии</a></li>
-                        <li><a href="booking.html" class="active">Бронирование</a></li>
+                        <li><a href="booking.html">Бронирование</a></li>
                     </ul>
                 </nav>
             </div>
@@ -313,95 +329,214 @@
     <main>
         <div class="container">
             <div class="page-title">
-                <h1>Бронирование тура</h1>
-                <p>Заполните форму для бронирования вашего путешествия</p>
+                <h1>Все туры в Чехию</h1>
+                <p>Выберите идеальный тур для вашего путешествия</p>
             </div>
             
-            <div class="success" id="success-message">
-                Заявка отправлена успешно! Мы свяжемся с вами в ближайшее время.
-            </div>
-            
-            <div class="form-container">
-                <form id="booking-form" action="https://httpbin.org/post" method="POST">
-                    <!-- Информация о туре -->
-                    <div class="form-group">
-                        <label for="tour_name">Выберите тур:</label>
-                        <select id="tour_name" name="tour_name" required>
-                            <option value="" disabled selected>Выберите тур</option>
-                            <option value="prague_magic">Волшебная Прага (4 дня) - 25 000 руб.</option>
-                            <option value="krumlov_fairy">Чешский Крумлов (3 дня) - 18 000 руб.</option>
-                            <option value="karlovy_vary_spa">Карловы Вары (5 дней) - 32 000 руб.</option>
-                            <option value="brno_moravia">Брно и Моравский Край (4 дня) - 22 000 руб.</option>
-                            <option value="prague_castles">Пражские замки (5 дней) - 28 000 руб.</option>
-                            <option value="beer_tour">Пивной тур по Чехии (6 дней) - 35 000 руб.</option>
-                            <option value="winter_prague">Зимняя Прага (4 дня) - 27 000 руб.</option>
-                            <option value="czech_switzerland">Чешская Швейцария (3 дня) - 24 000 руб.</option>
-                            <option value="kutna_hora">Кутна Гора и костница (2 дня) - 19 000 руб.</option>
-                            <option value="prague_holidays">Пражские каникулы (7 дней) - 40 000 руб.</option>
-                            <option value="gastronomic_tour">Гастрономический тур (5 дней) - 30 000 руб.</option>
-                            <option value="romantic_weekend">Романтический уикенд (3 дня) - 32 000 руб.</option>
-                        </select>
-                        <div class="error" id="tour_name_error">Выберите тур</div>
+            <div class="tours-grid" id="tours-container">
+                <!-- Тур 1 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Прага">
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="tour_date">Дата начала тура:</label>
-                        <input type="date" id="tour_date" name="tour_date" value="2025-12-03" required>
-                        <div class="error" id="tour_date_error">Выберите дату</div>
-                    </div>
-                    
-                    <!-- Информация о клиенте -->
-                    <div class="form-group">
-                        <label for="customer_name">Ваше ФИО:</label>
-                        <input type="text" id="customer_name" name="customer_name" placeholder="Иванов Иван Иванович" required>
-                        <div class="error" id="customer_name_error">Введите ФИО</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="customer_phone">Телефон:</label>
-                        <input type="tel" id="customer_phone" name="customer_phone" placeholder="+7 (999) 999-99-99" required>
-                        <div class="error" id="customer_phone_error">Введите телефон</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="customer_email">Email:</label>
-                        <input type="email" id="customer_email" name="customer_email" placeholder="example@mail.ru" required>
-                        <div class="error" id="customer_email_error">Введите email</div>
-                    </div>
-                    
-                    <!-- Параметры тура -->
-                    <div class="form-group">
-                        <label for="people_count">Количество человек:</label>
-                        <input type="number" id="people_count" name="people_count" min="1" max="10" value="2" required>
-                        <div class="error" id="people_count_error">Введите количество от 1 до 10</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Тип номера:</label>
-                        <div class="radio-group">
-                            <div class="radio-option">
-                                <input type="radio" id="room_standard" name="room_type" value="standard" checked>
-                                <label for="room_standard">Стандарт</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" id="room_comfort" name="room_type" value="comfort">
-                                <label for="room_comfort">Комфорт</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" id="room_lux" name="room_type" value="lux">
-                                <label for="room_lux">Люкс</label>
-                            </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Волшебная Прага</h3>
+                        <p class="tour-description">4-дневный тур по столице Чехии с посещением Пражского Града, Карлова моста и Староместской площади.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 4 дня</span>
+                            <span class="tour-season">🌞 Круглый год</span>
                         </div>
+                        <div class="tour-price">25 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
                     </div>
-                    
-                    <!-- Дополнительно -->
-                    <div class="form-group">
-                        <label for="comments">Дополнительные пожелания:</label>
-                        <textarea id="comments" name="comments" rows="3" placeholder="Ваши пожелания..."></textarea>
+                </div>
+                
+                <!-- Тур 2 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Чешский Крумлов">
                     </div>
-                    
-                    <button type="submit" class="btn">Отправить заявку</button>
-                </form>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Чешский Крумлов</h3>
+                        <p class="tour-description">Экскурсия в сказочный город-заповедник с посещением замка и прогулкой по извилистым улочкам.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 3 дня</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">18 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 3 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1598966735771-4c0e69c6f5b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Карловы Вары">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Карловы Вары</h3>
+                        <p class="tour-description">Оздоровительный тур на знаменитый курорт с термальными источниками и уникальной архитектурой.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 5 дней</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">32 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 4 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1588666309999-ef3c1c6f55fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Брно">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Брно и Моравский Край</h3>
+                        <p class="tour-description">Исследуйте второй по величине город Чехии и знаменитые Моравские пещеры.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 4 дня</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">22 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 5 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1547891657-e0c8ddd8b5c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Замки">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Пражские замки</h3>
+                        <p class="tour-description">Тур по самым знаменитым замкам в окрестностях Праги: Карлштейн, Конопиште и другие.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 5 дней</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">28 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 6 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Пиво">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Пивной тур по Чехии</h3>
+                        <p class="tour-description">Посещение знаменитых пивоварен Пльзень, Будвайзер и дегустации лучших сортов пива.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 6 дней</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">35 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 7 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Зимняя Прага">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Зимняя Прага</h3>
+                        <p class="tour-description">Рождественские ярмарки, зимние пейзажи и уютные кафе в самом сердце Европы.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 4 дня</span>
+                            <span class="tour-season">❄️ Декабрь-Февраль</span>
+                        </div>
+                        <div class="tour-price">27 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 8 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1593693397697-15c5d69ac4e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Чешская Швейцария">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Чешская Швейцария</h3>
+                        <p class="tour-description">Национальный парк с уникальными скальными образованиями и живописными тропами.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 3 дня</span>
+                            <span class="tour-season">🌞 Апрель-Октябрь</span>
+                        </div>
+                        <div class="tour-price">24 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 9 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1580584126903-c17dab3041e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Кутна Гора">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Кутна Гора и костница</h3>
+                        <p class="tour-description">Экскурсия в город с уникальной часовней, украшенной человеческими костями.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 2 дня</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">19 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 10 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1556484687-3064c7c81c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Пражские каникулы">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Пражские каникулы</h3>
+                        <p class="tour-description">7-дневный тур с полным погружением в культуру, историю и кухню Праги.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 7 дней</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">40 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 11 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Гастрономический тур">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Гастрономический тур</h3>
+                        <p class="tour-description">Знакомство с чешской кухней: кнедлики, вепрево колено, трдельник и многое другое.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 5 дней</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">30 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
+                
+                <!-- Тур 12 -->
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Романтический тур">
+                    </div>
+                    <div class="tour-content">
+                        <h3 class="tour-title">Романтический уикенд</h3>
+                        <p class="tour-description">Специальный тур для пар с проживанием в исторических отелях и романтическими ужинами.</p>
+                        <div class="tour-details">
+                            <span class="tour-duration">⏱ 3 дня</span>
+                            <span class="tour-season">🌞 Круглый год</span>
+                        </div>
+                        <div class="tour-price">32 000 руб.</div>
+                        <a href="booking.html" class="btn btn-block">Забронировать</a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -438,109 +573,17 @@
                 });
             }
             
-            // Форма бронирования
-            const form = document.getElementById('booking-form');
-            const successMessage = document.getElementById('success-message');
+            // Автоматическое определение активной страницы
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('nav a');
             
-            // При отправке формы
-            form.addEventListener('submit', function(e) {
-                e.preventDefault(); // Останавливаем обычную отправку
-                
-                // Проверяем форму
-                if (validateForm()) {
-                    // Если всё ок - отправляем
-                    sendForm();
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
-            });
-            
-            // Проверка формы
-            function validateForm() {
-                let isValid = true;
-                
-                // Проверяем все обязательные поля
-                const requiredFields = [
-                    'tour_name', 'tour_date', 'customer_name', 
-                    'customer_phone', 'customer_email', 'people_count'
-                ];
-                
-                requiredFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    const error = document.getElementById(fieldId + '_error');
-                    
-                    if (!field.value) {
-                        isValid = false;
-                        error.style.display = 'block';
-                    } else {
-                        error.style.display = 'none';
-                    }
-                });
-                
-                // Проверяем email
-                const email = document.getElementById('customer_email');
-                const emailError = document.getElementById('customer_email_error');
-                if (email.value && !email.value.includes('@')) {
-                    isValid = false;
-                    emailError.textContent = 'Введите правильный email';
-                    emailError.style.display = 'block';
-                }
-                
-                // Проверяем количество людей
-                const people = document.getElementById('people_count');
-                const peopleError = document.getElementById('people_count_error');
-                if (people.value && (people.value < 1 || people.value > 10)) {
-                    isValid = false;
-                    peopleError.textContent = 'От 1 до 10 человек';
-                    peopleError.style.display = 'block';
-                }
-                
-                return isValid;
-            }
-            
-            // Отправка формы
-            function sendForm() {
-                const formData = new FormData(form);
-                const button = form.querySelector('button');
-                
-                // Меняем текст кнопки
-                button.textContent = 'Отправка...';
-                button.disabled = true;
-                
-                // Отправляем на сервер
-                fetch('https://httpbin.org/post', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Показываем успех
-                    successMessage.style.display = 'block';
-                    form.reset();
-                    
-                    // Прокручиваем к верху
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    
-                    // Возвращаем кнопку через 3 секунды
-                    setTimeout(() => {
-                        button.textContent = 'Отправить заявку';
-                        button.disabled = false;
-                    }, 3000);
-                })
-                .catch(error => {
-                    alert('Ошибка отправки. Попробуйте еще раз.');
-                    button.textContent = 'Отправить заявку';
-                    button.disabled = false;
-                });
-            }
-            
-            // Убираем ошибки при вводе
-            const inputs = form.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    const error = document.getElementById(this.id + '_error');
-                    if (error) {
-                        error.style.display = 'none';
-                    }
-                });
             });
         });
     </script>
