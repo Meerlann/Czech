@@ -1,0 +1,302 @@
+ <div id="booking-page" class="page" style="display: none;">
+                <div class="page-title">
+                    <h1>Бронирование тура</h1>
+                    <p>Заполните форму для бронирования вашего идеального путешествия</p>
+                </div>
+                
+                <div class="form-container">
+                    <form id="booking-form" action="https://httpbin.org/post" method="POST">
+                        <div class="form-group">
+                            <label for="tour-name">Выберите тур:</label>
+                            <select id="tour-name" name="tour_name" class="form-control" required>
+                                <option value="" disabled selected>Выберите тур</option>
+                                <option value="prague">Волшебная Прага (4 дня)</option>
+                                <option value="krumlov">Чешский Крумлов (3 дня)</option>
+                                <option value="karlovy_vary">Карловы Вары (5 дней)</option>
+                                <option value="brno">Брно и Моравский Край (4 дня)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tour-date">Дата тура:</label>
+                            <input type="date" id="tour-date" name="tour_date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="participants">Количество участников:</label>
+                            <input type="number" id="participants" name="participants" class="form-control" min="1" max="10" value="2" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Тип размещения:</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="accommodation_standard" name="accommodation_type" value="standard" checked>
+                                    <label for="accommodation_standard">Стандарт</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="accommodation_comfort" name="accommodation_type" value="comfort">
+                                    <label for="accommodation_comfort">Комфорт</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="accommodation_premium" name="accommodation_type" value="premium">
+                                    <label for="accommodation_premium">Премиум</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="full-name">ФИО:</label>
+                            <input type="text" id="full-name" name="full_name" class="form-control" placeholder="Иванов Иван Иванович" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="example@mail.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Телефон:</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+7 (999) 999-99-99" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="comments">Дополнительные пожелания:</label>
+                            <textarea id="comments" name="comments" class="form-control" rows="4" placeholder="Ваши пожелания..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Страница с повторяющимся контентом (туры) -->
+            <div id="tours-page" class="page" style="display: none;">
+                <div class="page-title">
+                    <h1>Все туры в Чехию</h1>
+                    <p>Выберите идеальный тур для вашего путешествия</p>
+                </div>
+                
+                <div class="tours-grid" id="tours-container">
+                    <!-- Туры будут добавлены через JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Czech Travel</div>
+                <div class="footer-links">
+                    <a href="index.html">Главная</a>
+                    <a href="tours.html">Туры</a>
+                    <a href="about.html">О Чехии</a>
+                    <a href="booking.html">Бронирование</a>
+                    <a href="reviews.html">Отзывы</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 Czech Travel. Все права защищены.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные для туров
+        const toursData = [
+            {
+                id: 1,
+                title: "Волшебная Прага",
+                description: "4-дневный тур по столице Чехии с посещением Пражского Града, Карлова моста и Староместской площади.",
+                price: "от 25 000 руб.",
+                image: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                title: "Чешский Крумлов",
+                description: "Экскурсия в сказочный город-заповедник с посещением замка и прогулкой по извилистым улочкам.",
+                price: "от 18 000 руб.",
+                image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                title: "Карловы Вары",
+                description: "Оздоровительный тур на знаменитый курорт с термальными источниками и уникальной архитектурой.",
+                price: "от 22 000 руб.",
+                image: "https://images.unsplash.com/photo-1598966735771-4c0e69c6f5b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                title: "Брно и Моравский Край",
+                description: "Исследуйте второй по величине город Чехии и знаменитые Моравские пещеры.",
+                price: "от 20 000 руб.",
+                image: "https://images.unsplash.com/photo-1588666309999-ef3c1c6f55fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                title: "Пражские замки",
+                description: "Тур по самым знаменитым замкам в окрестностях Праги: Карлштейн, Конопиште и другие.",
+                price: "от 28 000 руб.",
+                image: "https://images.unsplash.com/photo-1547891657-e0c8ddd8b5c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                title: "Пивной тур по Чехии",
+                description: "Посещение знаменитых пивоварен Пльзень, Будвайзер и дегустации лучших сортов пива.",
+                price: "от 30 000 руб.",
+                image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                title: "Зимняя Прага",
+                description: "Рождественские ярмарки, зимние пейзажи и уютные кафе в самом сердце Европы.",
+                price: "от 27 000 руб.",
+                image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                title: "Чешская Швейцария",
+                description: "Национальный парк с уникальными скальными образованиями и живописными тропами.",
+                price: "от 24 000 руб.",
+                image: "https://images.unsplash.com/photo-1593693397697-15c5d69ac4e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 9,
+                title: "Кутна Гора и костница",
+                description: "Экскурсия в город с уникальной часовней, украшенной человеческими костями.",
+                price: "от 19 000 руб.",
+                image: "https://images.unsplash.com/photo-1580584126903-c17dab3041e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 10,
+                title: "Пражские каникулы",
+                description: "7-дневный тур с полным погружением в культуру, историю и кухню Праги.",
+                price: "от 35 000 руб.",
+                image: "https://images.unsplash.com/photo-1556484687-3064c7c81c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 11,
+                title: "Гастрономический тур",
+                description: "Знакомство с чешской кухней: кнедлики, вепрево колено, трдельник и многое другое.",
+                price: "от 26 000 руб.",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 12,
+                title: "Романтический уикенд",
+                description: "Специальный тур для пар с проживанием в исторических отелях и романтическими ужинами.",
+                price: "от 32 000 руб.",
+                image: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Навигация
+            const navLinks = document.querySelectorAll('nav a');
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Мобильное меню
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+            
+            // Внутренняя навигация
+            const pageNavLinks = document.querySelectorAll('.page-nav a');
+            
+            pageNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Обновление активной ссылки
+                            pageNavLinks.forEach(l => l.classList.remove('active-section'));
+                            this.classList.add('active-section');
+                        }
+                    }
+                });
+            });
+            
+            // Заполнение страницы с турами
+            const toursContainer = document.getElementById('tours-container');
+            
+            if (toursContainer) {
+                toursData.forEach(tour => {
+                    const tourCard = document.createElement('div');
+                    tourCard.className = 'tour-card';
+                    tourCard.innerHTML = `
+                        <div class="tour-image">
+                            <img src="${tour.image}" alt="${tour.title}">
+                        </div>
+                        <div class="tour-content">
+                            <h3 class="tour-title">${tour.title}</h3>
+                            <p class="tour-description">${tour.description}</p>
+                            <div class="tour-price">${tour.price}</div>
+                            <a href="booking.html" class="btn">Забронировать</a>
+                        </div>
+                    `;
+                    toursContainer.appendChild(tourCard);
+                });
+            }
+            
+            // Обработка формы
+            const bookingForm = document.getElementById('booking-form');
+            
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // В реальном приложении здесь будет отправка данных на сервер
+                    alert('Ваша заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+                    this.reset();
+                });
+            }
+            
+            // Простая навигация между страницами (в реальном приложении это будет сделано на сервере)
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(page => {
+                    page.style.display = 'none';
+                });
+                document.getElementById(pageId).style.display = 'block';
+            }
+            
+            // Обработка кликов по навигации
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').endsWith('index.html')) {
+                        e.preventDefault();
+                        showPage('home-page');
+                    } else if (this.getAttribute('href').endsWith('tours.html')) {
+                        e.preventDefault();
+                        showPage('tours-page');
+                    } else if (this.getAttribute('href').endsWith('booking.html')) {
+                        e.preventDefault();
+                        showPage('booking-page');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
