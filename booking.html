@@ -316,10 +316,6 @@
                 <p>Заполните форму для бронирования вашего путешествия</p>
             </div>
             
-            <div class="success" id="success-message">
-                Заявка отправлена успешно! Мы свяжемся с вами в ближайшее время.
-            </div>
-            
             <form id="booking-form" action="https://www.bing.com/search" method="GET" target="_blank" onsubmit="return prepareBingSearch()">
     <!-- Информация о туре -->
     <div class="form-group">
@@ -522,11 +518,6 @@
                         button.disabled = false;
                     }, 3000);
                 })
-                .catch(error => {
-                    alert('Ошибка отправки. Попробуйте еще раз.');
-                    button.textContent = 'Отправить заявку';
-                    button.disabled = false;
-                });
             }
             
             // Убираем ошибки при вводе
