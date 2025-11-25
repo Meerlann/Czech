@@ -1,5 +1,4 @@
 javascript
-// Функции для главной страницы
 document.addEventListener('DOMContentLoaded', function() {
     // Внутренняя навигация
     const pageNavLinks = document.querySelectorAll('.page-nav a');
@@ -21,20 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     pageNavLinks.forEach(l => l.classList.remove('active-section'));
                     this.classList.add('active-section');
                 }
-            }
-        });
-    });
-    
-    // Плавная прокрутка для якорных ссылок
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
             }
         });
     });
