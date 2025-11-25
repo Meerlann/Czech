@@ -436,16 +436,15 @@
     <script src="js/main.js"></script>
     <script src="js/home.js"></script>
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const nav = document.querySelector('nav');
-            
-            if (mobileMenuBtn && nav) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                });
-            }
 document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('nav');
+    
+    if (mobileMenuBtn && nav) {
+        mobileMenuBtn.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    }
     const navLinks = document.querySelectorAll('.page-nav a');
     
     navLinks.forEach(link => {
