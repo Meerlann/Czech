@@ -50,16 +50,20 @@
             align-items: center;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            display: flex;
-            align-items: center;
         }
 
         .logo img {
             height: 40px;
-            margin-right: 10px;
+            width: auto;
         }
 
         nav ul {
@@ -291,9 +295,9 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <img src="https://avatars.mds.yandex.net/i?id=9e9e9977fef1082fe0316fedf3643827_l-5313038-images-thumbs&n=13" alt="Логотип">
-                    Czech Travel
+                <div class="logo-container">
+                    <img src="https://avatars.mds.yandex.net/i?id=9e9e9977fef1082fe0316fedf3643827_l-5313038-images-thumbs&n=13" alt="Логотип" class="logo-img">
+                    <div class="logo">Czech Travel</div>
                 </div>
                 <button class="mobile-menu-btn">☰</button>
                 <nav>
@@ -545,18 +549,6 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
