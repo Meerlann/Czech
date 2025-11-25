@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/home.css">
      <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Базовые стили */
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #e74c3c;
@@ -88,7 +87,6 @@
             color: var(--secondary-color);
         }
 
-        /* Подчеркивание активной страницы */
         nav a.active::after {
             content: '';
             position: absolute;
@@ -108,7 +106,6 @@
             cursor: pointer;
         }
         
-        /* Основной контент */
         main {
             min-height: calc(100vh - 140px);
             padding: 40px 0;
@@ -130,7 +127,6 @@
             color: #666;
         }
         
-        /* Сетка туров */
         .tours-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -228,7 +224,6 @@
             width: 100%;
         }
         
-        /* Подвал */
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -268,7 +263,6 @@
             color: #bbb;
         }
         
-        /* Адаптивность */
         @media (max-width: 768px) {
             .header-content {
                 flex-wrap: wrap;
@@ -386,7 +380,6 @@
                     </div>
                 </section>
                 
-                <!-- Секция 2: Почему Чехия? -->
                 <section id="section2">
                     <h2 class="section-title">Почему стоит посетить Чехию?</h2>
                     <div class="content">
@@ -406,7 +399,6 @@
                     </div>
                 </section>
                 
-                <!-- Секция 3: Отзывы -->
                 <section id="section3">
                     <h2 class="section-title">Отзывы наших клиентов</h2>
                     <div class="reviews">
@@ -444,7 +436,6 @@
     <script src="js/main.js"></script>
     <script src="js/home.js"></script>
         <script>
-        // Только мобильное меню
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const nav = document.querySelector('nav');
@@ -454,7 +445,6 @@
                     nav.classList.toggle('active');
                 });
             }
-// Исправление навигации на главной
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.page-nav a');
     
@@ -465,13 +455,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                // Плавная прокрутка
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
-                // Обновление активной ссылки
                 navLinks.forEach(l => l.classList.remove('active-section'));
                 this.classList.add('active-section');
             }
