@@ -322,84 +322,87 @@
                     <!-- Скрытое поле с основным поисковым запросом -->
                     <input type="hidden" name="q" value="search">
                     
-                    <!-- Информация о туре -->
-                    <div class="form-group">
-                        <label for="tour_name">Выберите тур:</label>
-                        <select id="tour_name" name="tour" required>
-                            <option value="" disabled selected>Выберите тур</option>
-                            <option value="Волшебная Прага (4 дня) - 25 000 руб.">Волшебная Прага (4 дня) - 25 000 руб.</option>
-                            <option value="Чешский Крумлов (3 дня) - 18 000 руб.">Чешский Крумлов (3 дня) - 18 000 руб.</option>
-                            <option value="Карловы Вары (5 дней) - 32 000 руб.">Карловы Вары (5 дней) - 32 000 руб.</option>
-                            <option value="Брно и Моравский Край (4 дня) - 22 000 руб.">Брно и Моравский Край (4 дня) - 22 000 руб.</option>
-                            <option value="Пражские замки (5 дней) - 28 000 руб.">Пражские замки (5 дней) - 28 000 руб.</option>
-                            <option value="Пивной тур по Чехии (6 дней) - 35 000 руб.">Пивной тур по Чехии (6 дней) - 35 000 руб.</option>
-                            <option value="Зимняя Прага (4 дня) - 27 000 руб.">Зимняя Прага (4 дня) - 27 000 руб.</option>
-                            <option value="Чешская Швейцария (3 дня) - 24 000 руб.">Чешская Швейцария (3 дня) - 24 000 руб.</option>
-                            <option value="Кутна Гора и костница (2 дня) - 19 000 руб.">Кутна Гора и костница (2 дня) - 19 000 руб.</option>
-                            <option value="Пражские каникулы (7 дней) - 40 000 руб.">Пражские каникулы (7 дней) - 40 000 руб.</option>
-                            <option value="Гастрономический тур (5 дней) - 30 000 руб.">Гастрономический тур (5 дней) - 30 000 руб.</option>
-                            <option value="Романтический уикенд (3 дня) - 32 000 руб.">Романтический уикенд (3 дня) - 32 000 руб.</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="tour_date">Дата начала тура:</label>
-                        <input type="date" id="tour_date" name="date" value="2025-12-03" required>
-                    </div>
-                    
-                    <!-- Информация о клиенте -->
-                    <div class="form-group">
-                        <label for="customer_name">Ваше ФИО:</label>
-                        <input type="text" id="customer_name" name="name" placeholder="Иванов Иван Иванович" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="customer_phone">Телефон:</label>
-                        <input type="tel" id="customer_phone" name="phone" placeholder="+7 (999) 999-99-99" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="customer_email">Email:</label>
-                        <input type="email" id="customer_email" name="email" placeholder="example@mail.ru" required>
-                    </div>
-                    
-                    <!-- Параметры тура -->
-                    <div class="form-group">
-                        <label for="people_count">Количество человек:</label>
-                        <input type="number" id="people_count" name="people" min="1" max="10" value="2" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Тип номера:</label>
-                        <div class="radio-group">
-                            <div class="radio-option">
-                                <input type="radio" id="room_standard" name="room" value="standard" checked>
-                                <label for="room_standard">Стандарт</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" id="room_comfort" name="room" value="comfort">
-                                <label for="room_comfort">Комфорт</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" id="room_lux" name="room" value="lux">
-                                <label for="room_lux">Люкс</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Дополнительно -->
-                    <div class="form-group">
-                        <label for="comments">Дополнительные пожелания:</label>
-                        <textarea id="comments" name="comments" rows="3" placeholder="Ваши пожелания..."></textarea>
-                    </div>
-                    
-                    <!-- Скрытые поля как во второй форме -->
-                    <input type="hidden" name="form_type" value="tour_booking">
-                    <input type="hidden" name="page_id" value="1">
-                    
-                    <button type="submit" class="btn">Отправить заявку</button>
-                    <button type="reset" class="btn" style="background: #95a5a6; margin-top: 5px;">Очистить форму</button>
-                </form>
+                    <form action="https://www.bing.com/search" target="_blank" method="GET">
+    <!-- Скрытое поле с основным поисковым запросом -->
+    <input type="hidden" name="q" value="search">
+    
+    <!-- Информация о туре -->
+    <div class="form-group">
+        <label for="tour_name">Выберите тур:</label>
+        <select id="tour_name" name="q" required>
+            <option value="" disabled selected>Выберите тур</option>
+            <option value="языки">Волшебная Прага (4 дня) - 25 000 руб.</option>
+            <option value="языки">Чешский Крумлов (3 дня) - 18 000 руб.</option>
+            <option value="языки">Карловы Вары (5 дней) - 32 000 руб.</option>
+            <option value="языки">Брно и Моравский Край (4 дня) - 22 000 руб.</option>
+            <option value="языки">Пражские замки (5 дней) - 28 000 руб.</option>
+            <option value="языки">Пивной тур по Чехии (6 дней) - 35 000 руб.</option>
+            <option value="языки">Зимняя Прага (4 дня) - 27 000 руб.</option>
+            <option value="языки">Чешская Швейцария (3 дня) - 24 000 руб.</option>
+            <option value="языки">Кутна Гора и костница (2 дня) - 19 000 руб.</option>
+            <option value="языки">Пражские каникулы (7 дней) - 40 000 руб.</option>
+            <option value="языки">Гастрономический тур (5 дней) - 30 000 руб.</option>
+            <option value="языки">Романтический уикенд (3 дня) - 32 000 руб.</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="tour_date">Дата начала тура:</label>
+        <input type="date" id="tour_date" name="date" value="2025-11-15" required>
+    </div>
+    
+    <!-- Информация о клиенте -->
+    <div class="form-group">
+        <label for="customer_name">Ваше ФИО:</label>
+        <input type="text" id="customer_name" name="firstname" placeholder="ANNA" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="customer_phone">Телефон:</label>
+        <input type="tel" id="customer_phone" name="phone" placeholder="+79261905885" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="customer_email">Email:</label>
+        <input type="email" id="customer_email" name="email" placeholder="anya.meerlan@yandex.ru" required>
+    </div>
+    
+    <!-- Параметры тура -->
+    <div class="form-group">
+        <label for="people_count">Количество человек:</label>
+        <input type="number" id="people_count" name="rank" min="1" max="10" value="2" required>
+    </div>
+    
+    <div class="form-group">
+        <label>Тип номера:</label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" id="room_standard" name="role" value="fff" checked>
+                <label for="room_standard">Стандарт</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="room_comfort" name="role" value="fff">
+                <label for="room_comfort">Комфорт</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="room_lux" name="role" value="fff">
+                <label for="room_lux">Люкс</label>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Дополнительно -->
+    <div class="form-group">
+        <label for="comments">Дополнительные пожелания:</label>
+        <textarea id="comments" name="comments" rows="3" placeholder="Ваши пожелания..."></textarea>
+    </div>
+    
+    <!-- Скрытые поля -->
+    <input type="hidden" name="form_type" value="valorant_registration">
+    
+    <button type="submit" class="btn">Отправить заявку</button>
+    <button type="reset" class="btn" style="background: #95a5a6; margin-top: 5px;">Очистить форму</button>
+</form>
             </div>
         </div>
     </main>
