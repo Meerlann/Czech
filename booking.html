@@ -3,197 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бронирование тура | Czech Travel</title>
+    <title>Бронирование тура</title>
     <style>
-        /* Базовые стили и сброс */
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #e74c3c;
-            --accent-color: #3498db;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --border-radius: 4px;
-            --transition: all 0.3s ease;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #f9f9f9;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
+            background-color: #f5f5f5;
+            padding: 20px;
         }
         
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-        }
-        
-        .btn:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-        }
-        
-        /* Шапка и навигация */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
-        nav ul {
-            display: flex;
-        }
-        
-        nav li {
-            margin-left: 25px;
-        }
-        
-        nav a {
-            padding: 5px 0;
-            position: relative;
-            transition: var(--transition);
-        }
-        
-        nav a:hover, nav a.active {
-            color: var(--secondary-color);
-        }
-        
-        nav a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--secondary-color);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Основной контент */
-        main {
-            min-height: calc(100vh - 140px);
-            padding: 40px 0;
-        }
-        
-        .page-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-        }
-        
-        .page-title h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .page-title p {
-            font-size: 1.2rem;
-            color: #666;
-        }
-        
-        /* Форма */
-        .form-container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
             background: white;
             padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
         }
         
         .form-group {
             margin-bottom: 20px;
         }
         
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
         }
         
-        .form-control {
+        input, select, textarea {
             width: 100%;
-            padding: 10px 15px;
+            padding: 10px;
             border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            transition: var(--transition);
+            border-radius: 5px;
+            font-size: 16px;
         }
         
-        .form-control:focus {
-            border-color: var(--accent-color);
+        input:focus, select:focus, textarea:focus {
             outline: none;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            border-color: #3498db;
         }
         
         .radio-group {
             display: flex;
             gap: 20px;
+            margin-top: 5px;
         }
         
         .radio-option {
@@ -202,150 +68,46 @@
         }
         
         .radio-option input {
-            margin-right: 8px;
+            width: auto;
+            margin-right: 5px;
         }
         
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .form-section {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .form-section-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-        
-        .tour-summary {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-        }
-        
-        .tour-summary h3 {
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        
-        .tour-summary p {
-            margin-bottom: 5px;
-        }
-        
-        .price-display {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--secondary-color);
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
             margin-top: 10px;
         }
         
-        .form-note {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 5px;
+        .btn:hover {
+            background: #c0392b;
         }
         
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.9rem;
+        .error {
+            color: red;
+            font-size: 14px;
             margin-top: 5px;
             display: none;
         }
         
-        .success-message {
+        .success {
             background: #d4edda;
             color: #155724;
             padding: 15px;
-            border-radius: var(--border-radius);
+            border-radius: 5px;
             margin-bottom: 20px;
+            text-align: center;
             display: none;
         }
         
-        /* Подвал */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .footer-links a {
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .copyright {
-            font-size: 0.9rem;
-            color: #bbb;
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-wrap: wrap;
-            }
-            
-            nav {
-                width: 100%;
-                order: 3;
-                margin-top: 15px;
-                display: none;
-            }
-            
-            nav.active {
-                display: block;
-            }
-            
-            nav ul {
-                flex-direction: column;
-            }
-            
-            nav li {
-                margin: 10px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .page-title h1 {
-                font-size: 2rem;
-            }
-            
-            .form-row {
-                flex-direction: column;
-                gap: 0;
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
             }
             
             .radio-group {
@@ -356,550 +118,190 @@
     </style>
 </head>
 <body>
-    <!-- Шапка с навигацией -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDBDOC45NTQgMCAwIDguOTU0IDAgMjBTOC45NTQgNDAgMjAgNDBTNDAgMzEuMDQ2IDQwIDIwQzQwIDguOTU0IDMxLjA0NiAwIDIwIDBaTTE4IDM0VjIySDEwVjE4SDE4VjZIMjJWMThIMzBWMjJIMjJWMzRIMThaIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo=" alt="Логотип">
-                    <span>Czech Travel</span>
-                </div>
-                <button class="mobile-menu-btn">☰</button>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Главная</a></li>
-                        <li><a href="tours.html">Туры</a></li>
-                        <li><a href="about.html">О Чехии</a></li>
-                        <li><a href="booking.html" class="active">Бронирование</a></li>
-                        <li><a href="reviews.html">Отзывы</a></li>
-                    </ul>
-                </nav>
-            </div>
+    <div class="container">
+        <h1>Бронирование тура в Чехию</h1>
+        
+        <div class="success" id="success-message">
+            Заявка отправлена успешно!
         </div>
-    </header>
-
-    <!-- Основной контент -->
-    <main>
-        <div class="container">
-            <div class="page-title">
-                <h1>Бронирование тура</h1>
-                <p>Заполните форму для бронирования вашего идеального путешествия</p>
+        
+        <form id="booking-form" action="https://httpbin.org/post" method="POST">
+            <!-- Информация о туре -->
+            <div class="form-group">
+                <label for="tour_name">Выберите тур:</label>
+                <select id="tour_name" name="tour_name" required>
+                    <option value="" disabled selected>Выберите тур</option>
+                    <option value="prague">Прага - 4 дня</option>
+                    <option value="krumlov">Чешский Крумлов - 3 дня</option>
+                    <option value="karlovy_vary">Карловы Вары - 5 дней</option>
+                </select>
+                <div class="error" id="tour_name_error">Выберите тур</div>
             </div>
             
-            <div class="success-message" id="success-message">
-                Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.
+            <div class="form-group">
+                <label for="tour_date">Дата начала:</label>
+                <input type="date" id="tour_date" name="tour_date" value="2024-06-15" required>
+                <div class="error" id="tour_date_error">Выберите дату</div>
             </div>
             
-            <div class="form-container">
-                <form id="booking-form" action="https://httpbin.org/post" method="POST">
-                    <!-- Информация о туре -->
-                    <div class="form-section">
-                        <h2 class="form-section-title">Информация о туре</h2>
-                        
-                        <div class="tour-summary">
-                            <h3>Выбранный тур: <span id="selected-tour-name">Волшебная Прага</span></h3>
-                            <p>Продолжительность: <span id="selected-tour-duration">4 дня / 3 ночи</span></p>
-                            <p>Дата начала: <span id="selected-tour-date">15.06.2023</span></p>
-                            <div class="price-display">Стоимость: <span id="selected-tour-price">25 000 руб.</span></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="tour_package">Выберите тур:</label>
-                            <select id="tour_package" name="tour_package" class="form-control" required>
-                                <option value="" disabled selected>Выберите тур</option>
-                                <option value="prague_magic" selected>Волшебная Прага (4 дня)</option>
-                                <option value="krumlov_fairy_tale">Чешский Крумлов (3 дня)</option>
-                                <option value="karlovy_vary_spa">Карловы Вары (5 дней)</option>
-                                <option value="brno_moravia">Брно и Моравский Край (4 дня)</option>
-                                <option value="beer_tour">Пивной тур по Чехии (6 дней)</option>
-                            </select>
-                            <div class="error-message" id="tour_package_error">Пожалуйста, выберите тур</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="tour_date">Дата начала тура:</label>
-                            <input type="date" id="tour_date" name="tour_date" class="form-control" min="2023-06-01" value="2023-06-15" required>
-                            <div class="error-message" id="tour_date_error">Пожалуйста, выберите дату начала тура</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Информация о участниках -->
-                    <div class="form-section">
-                        <h2 class="form-section-title">Информация об участниках</h2>
-                        
-                        <div class="form-group">
-                            <label for="participants_count">Количество участников:</label>
-                            <input type="number" id="participants_count" name="participants_count" class="form-control" min="1" max="10" value="2" required>
-                            <div class="error-message" id="participants_count_error">Пожалуйста, укажите количество участников (от 1 до 10)</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Тип размещения:</label>
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="accommodation_standard" name="accommodation_type" value="standard" checked>
-                                    <label for="accommodation_standard">Стандарт (2-местный номер)</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="accommodation_comfort" name="accommodation_type" value="comfort">
-                                    <label for="accommodation_comfort">Комфорт (улучшенный номер)</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="accommodation_premium" name="accommodation_type" value="premium">
-                                    <label for="accommodation_premium">Премиум (люкс)</label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="special_requirements">Особые требования или пожелания:</label>
-                            <textarea id="special_requirements" name="special_requirements" class="form-control" rows="3" placeholder="Например: диетические ограничения, аллергии, особые пожелания по размещению..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- Контактная информация -->
-                    <div class="form-section">
-                        <h2 class="form-section-title">Контактная информация</h2>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="customer_name">ФИО:</label>
-                                <input type="text" id="customer_name" name="customer_name" class="form-control" placeholder="Иванов Иван Иванович" required>
-                                <div class="error-message" id="customer_name_error">Пожалуйста, введите ваше ФИО</div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="customer_email">Email:</label>
-                                <input type="email" id="customer_email" name="customer_email" class="form-control" placeholder="example@mail.com" required>
-                                <div class="error-message" id="customer_email_error">Пожалуйста, введите корректный email</div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="customer_phone">Телефон:</label>
-                                <input type="tel" id="customer_phone" name="customer_phone" class="form-control" placeholder="+7 (999) 999-99-99" required>
-                                <div class="error-message" id="customer_phone_error">Пожалуйста, введите корректный номер телефона</div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="customer_country">Страна проживания:</label>
-                                <input type="text" id="customer_country" name="customer_country" class="form-control" placeholder="Россия" value="Россия" required>
-                                <div class="error-message" id="customer_country_error">Пожалуйста, укажите страну проживания</div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="customer_address">Адрес:</label>
-                            <input type="text" id="customer_address" name="customer_address" class="form-control" placeholder="Город, улица, дом, квартира" required>
-                            <div class="error-message" id="customer_address_error">Пожалуйста, введите ваш адрес</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Дополнительные услуги -->
-                    <div class="form-section">
-                        <h2 class="form-section-title">Дополнительные услуги</h2>
-                        
-                        <div class="form-group">
-                            <label for="airport_transfer">Трансфер из/в аэропорт:</label>
-                            <select id="airport_transfer" name="airport_transfer" class="form-control">
-                                <option value="none" selected>Не требуется</option>
-                                <option value="arrival_only">Только прибытие</option>
-                                <option value="departure_only">Только отъезд</option>
-                                <option value="both_ways">В обе стороны</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="travel_insurance">Страхование путешественников:</label>
-                            <select id="travel_insurance" name="travel_insurance" class="form-control">
-                                <option value="no" selected>Не требуется</option>
-                                <option value="basic">Базовый пакет</option>
-                                <option value="extended">Расширенный пакет</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="additional_excursions">Дополнительные экскурсии:</label>
-                            <textarea id="additional_excursions" name="additional_excursions" class="form-control" rows="2" placeholder="Укажите дополнительные экскурсии, которые вы хотели бы посетить..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- Способы оплаты -->
-                    <div class="form-section">
-                        <h2 class="form-section-title">Способ оплаты</h2>
-                        
-                        <div class="form-group">
-                            <label>Предпочтительный способ оплаты:</label>
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="payment_credit_card" name="payment_method" value="credit_card" checked>
-                                    <label for="payment_credit_card">Банковская карта</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="payment_bank_transfer" name="payment_method" value="bank_transfer">
-                                    <label for="payment_bank_transfer">Банковский перевод</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="payment_cash" name="payment_method" value="cash">
-                                    <label for="payment_cash">Наличные в офисе</label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="deposit_amount">Сумма предоплаты (депозит):</label>
-                            <input type="number" id="deposit_amount" name="deposit_amount" class="form-control" min="5000" max="50000" value="10000" required>
-                            <div class="form-note">Минимальная сумма предоплаты - 5 000 руб.</div>
-                            <div class="error-message" id="deposit_amount_error">Пожалуйста, укажите сумму предоплаты от 5 000 до 50 000 руб.</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Подтверждение -->
-                    <div class="form-group">
-                        <div class="radio-option">
-                            <input type="checkbox" id="terms_agreement" name="terms_agreement" required>
-                            <label for="terms_agreement">Я согласен с условиями бронирования и политикой конфиденциальности</label>
-                        </div>
-                        <div class="error-message" id="terms_agreement_error">Необходимо согласие с условиями бронирования</div>
-                    </div>
-                    
-                    <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 1.1rem;">Отправить заявку на бронирование</button>
-                </form>
+            <!-- Информация о клиенте -->
+            <div class="form-group">
+                <label for="customer_name">Ваше ФИО:</label>
+                <input type="text" id="customer_name" name="customer_name" placeholder="Иванов Иван Иванович" required>
+                <div class="error" id="customer_name_error">Введите ФИО</div>
             </div>
-        </div>
-    </main>
-
-    <!-- Подвал -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Czech Travel</div>
-                <div class="footer-links">
-                    <a href="index.html">Главная</a>
-                    <a href="tours.html">Туры</a>
-                    <a href="about.html">О Чехии</a>
-                    <a href="booking.html">Бронирование</a>
-                    <a href="reviews.html">Отзывы</a>
-                </div>
-                <div class="copyright">
-                    &copy; 2023 Czech Travel. Все права защищены.
+            
+            <div class="form-group">
+                <label for="customer_phone">Телефон:</label>
+                <input type="tel" id="customer_phone" name="customer_phone" placeholder="+7 (999) 999-99-99" required>
+                <div class="error" id="customer_phone_error">Введите телефон</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="customer_email">Email:</label>
+                <input type="email" id="customer_email" name="customer_email" placeholder="example@mail.ru" required>
+                <div class="error" id="customer_email_error">Введите email</div>
+            </div>
+            
+            <!-- Параметры тура -->
+            <div class="form-group">
+                <label for="people_count">Количество человек:</label>
+                <input type="number" id="people_count" name="people_count" min="1" max="10" value="2" required>
+                <div class="error" id="people_count_error">Введите количество</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Тип номера:</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="room_standard" name="room_type" value="standard" checked>
+                        <label for="room_standard">Стандарт</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="room_comfort" name="room_type" value="comfort">
+                        <label for="room_comfort">Комфорт</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="room_lux" name="room_type" value="lux">
+                        <label for="room_lux">Люкс</label>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+            
+            <!-- Дополнительно -->
+            <div class="form-group">
+                <label for="comments">Дополнительные пожелания:</label>
+                <textarea id="comments" name="comments" rows="3" placeholder="Ваши пожелания..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn">Отправить заявку</button>
+        </form>
+    </div>
 
     <script>
-        // Данные о турах
-        const toursData = {
-            'prague_magic': {
-                name: 'Волшебная Прага',
-                duration: '4 дня / 3 ночи',
-                basePrice: 25000
-            },
-            'krumlov_fairy_tale': {
-                name: 'Чешский Крумлов',
-                duration: '3 дня / 2 ночи',
-                basePrice: 18000
-            },
-            'karlovy_vary_spa': {
-                name: 'Карловы Вары',
-                duration: '5 дней / 4 ночи',
-                basePrice: 32000
-            },
-            'brno_moravia': {
-                name: 'Брно и Моравский Край',
-                duration: '4 дня / 3 ночи',
-                basePrice: 22000
-            },
-            'beer_tour': {
-                name: 'Пивной тур по Чехии',
-                duration: '6 дней / 5 ночи',
-                basePrice: 35000
-            }
-        };
-
-        // Инициализация при загрузке страницы
+        // Когда страница загрузилась
         document.addEventListener('DOMContentLoaded', function() {
-            // Мобильное меню
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const nav = document.querySelector('nav');
-            
-            if (mobileMenuBtn && nav) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                });
-            }
-            
-            // Обновление информации о туре при изменении выбора
-            const tourSelect = document.getElementById('tour_package');
-            const participantsInput = document.getElementById('participants_count');
-            const accommodationRadios = document.querySelectorAll('input[name="accommodation_type"]');
-            
-            if (tourSelect) {
-                tourSelect.addEventListener('change', updateTourInfo);
-                participantsInput.addEventListener('change', updateTourInfo);
-                
-                accommodationRadios.forEach(radio => {
-                    radio.addEventListener('change', updateTourInfo);
-                });
-                
-                // Инициализация информации о туре
-                updateTourInfo();
-            }
-            
-            // Обработка отправки формы
-            const bookingForm = document.getElementById('booking-form');
-            
-            if (bookingForm) {
-                bookingForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    if (validateForm()) {
-                        submitForm();
-                    }
-                });
-            }
-            
-            // Валидация полей в реальном времени
-            setupRealTimeValidation();
-        });
-        
-        // Обновление информации о выбранном туре
-        function updateTourInfo() {
-            const tourSelect = document.getElementById('tour_package');
-            const participantsInput = document.getElementById('participants_count');
-            const selectedTour = toursData[tourSelect.value];
-            
-            if (selectedTour) {
-                // Обновление названия тура
-                document.getElementById('selected-tour-name').textContent = selectedTour.name;
-                document.getElementById('selected-tour-duration').textContent = selectedTour.duration;
-                
-                // Расчет стоимости
-                const participants = parseInt(participantsInput.value) || 1;
-                const accommodationType = document.querySelector('input[name="accommodation_type"]:checked').value;
-                
-                // Коэффициенты для разных типов размещения
-                const accommodationMultipliers = {
-                    'standard': 1,
-                    'comfort': 1.3,
-                    'premium': 1.7
-                };
-                
-                let totalPrice = selectedTour.basePrice * participants * accommodationMultipliers[accommodationType];
-                
-                // Форматирование цены
-                const formattedPrice = new Intl.NumberFormat('ru-RU').format(Math.round(totalPrice));
-                document.getElementById('selected-tour-price').textContent = `${formattedPrice} руб.`;
-            }
-        }
-        
-        // Валидация формы
-        function validateForm() {
-            let isValid = true;
-            const requiredFields = [
-                'tour_package', 'tour_date', 'participants_count', 
-                'customer_name', 'customer_email', 'customer_phone',
-                'customer_country', 'customer_address', 'deposit_amount'
-            ];
-            
-            // Сброс сообщений об ошибках
-            document.querySelectorAll('.error-message').forEach(error => {
-                error.style.display = 'none';
-            });
-            
-            // Проверка обязательных полей
-            requiredFields.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                const errorElement = document.getElementById(`${fieldId}_error`);
-                
-                if (!field.value.trim()) {
-                    isValid = false;
-                    if (errorElement) errorElement.style.display = 'block';
-                }
-            });
-            
-            // Проверка email
-            const emailField = document.getElementById('customer_email');
-            const emailError = document.getElementById('customer_email_error');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (emailField.value && !emailRegex.test(emailField.value)) {
-                isValid = false;
-                emailError.textContent = 'Пожалуйста, введите корректный email';
-                emailError.style.display = 'block';
-            }
-            
-            // Проверка телефона
-            const phoneField = document.getElementById('customer_phone');
-            const phoneError = document.getElementById('customer_phone_error');
-            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-            
-            if (phoneField.value && !phoneRegex.test(phoneField.value.replace(/\s/g, ''))) {
-                isValid = false;
-                phoneError.textContent = 'Пожалуйста, введите корректный номер телефона';
-                phoneError.style.display = 'block';
-            }
-            
-            // Проверка количества участников
-            const participantsField = document.getElementById('participants_count');
-            const participantsError = document.getElementById('participants_count_error');
-            
-            if (participantsField.value && (participantsField.value < 1 || participantsField.value > 10)) {
-                isValid = false;
-                participantsError.style.display = 'block';
-            }
-            
-            // Проверка суммы депозита
-            const depositField = document.getElementById('deposit_amount');
-            const depositError = document.getElementById('deposit_amount_error');
-            
-            if (depositField.value && (depositField.value < 5000 || depositField.value > 50000)) {
-                isValid = false;
-                depositError.style.display = 'block';
-            }
-            
-            // Проверка согласия с условиями
-            const termsCheckbox = document.getElementById('terms_agreement');
-            const termsError = document.getElementById('terms_agreement_error');
-            
-            if (!termsCheckbox.checked) {
-                isValid = false;
-                termsError.style.display = 'block';
-            }
-            
-            return isValid;
-        }
-        
-        // Настройка валидации в реальном времени
-        function setupRealTimeValidation() {
-            const fieldsToValidate = [
-                'customer_name', 'customer_email', 'customer_phone',
-                'participants_count', 'deposit_amount'
-            ];
-            
-            fieldsToValidate.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (field) {
-                    field.addEventListener('blur', function() {
-                        validateField(fieldId);
-                    });
-                }
-            });
-        }
-        
-        // Валидация отдельного поля
-        function validateField(fieldId) {
-            const field = document.getElementById(fieldId);
-            const errorElement = document.getElementById(`${fieldId}_error`);
-            
-            if (!errorElement) return;
-            
-            let isValid = true;
-            let errorMessage = '';
-            
-            switch(fieldId) {
-                case 'customer_email':
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (field.value && !emailRegex.test(field.value)) {
-                        isValid = false;
-                        errorMessage = 'Пожалуйста, введите корректный email';
-                    }
-                    break;
-                    
-                case 'customer_phone':
-                    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-                    if (field.value && !phoneRegex.test(field.value.replace(/\s/g, ''))) {
-                        isValid = false;
-                        errorMessage = 'Пожалуйста, введите корректный номер телефона';
-                    }
-                    break;
-                    
-                case 'participants_count':
-                    if (field.value && (field.value < 1 || field.value > 10)) {
-                        isValid = false;
-                        errorMessage = 'Пожалуйста, укажите количество участников (от 1 до 10)';
-                    }
-                    break;
-                    
-                case 'deposit_amount':
-                    if (field.value && (field.value < 5000 || field.value > 50000)) {
-                        isValid = false;
-                        errorMessage = 'Пожалуйста, укажите сумму предоплаты от 5 000 до 50 000 руб.';
-                    }
-                    break;
-                    
-                default:
-                    if (!field.value.trim()) {
-                        isValid = false;
-                        errorMessage = 'Это поле обязательно для заполнения';
-                    }
-            }
-            
-            if (!isValid) {
-                errorElement.textContent = errorMessage;
-                errorElement.style.display = 'block';
-            } else {
-                errorElement.style.display = 'none';
-            }
-            
-            return isValid;
-        }
-        
-        // Отправка формы
-        function submitForm() {
             const form = document.getElementById('booking-form');
-            const formData = new FormData(form);
+            const successMessage = document.getElementById('success-message');
             
-            // Показ индикатора загрузки
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Отправка...';
-            submitButton.disabled = true;
-            
-            // Отправка на сервер
-            fetch('https://httpbin.org/post', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Ошибка сети');
+            // При отправке формы
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Останавливаем обычную отправку
+                
+                // Проверяем форму
+                if (validateForm()) {
+                    // Если всё ок - отправляем
+                    sendForm();
                 }
-            })
-            .then(data => {
-                // Показ сообщения об успехе
-                document.getElementById('success-message').style.display = 'block';
-                
-                // Прокрутка к верху страницы
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // Сброс формы
-                form.reset();
-                
-                // Восстановление значений по умолчанию
-                document.getElementById('tour_package').value = 'prague_magic';
-                document.getElementById('tour_date').value = '2023-06-15';
-                document.getElementById('participants_count').value = '2';
-                document.getElementById('deposit_amount').value = '10000';
-                document.getElementById('accommodation_standard').checked = true;
-                
-                // Обновление информации о туре
-                updateTourInfo();
-            })
-            .catch(error => {
-                alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.');
-                console.error('Ошибка:', error);
-            })
-            .finally(() => {
-                // Восстановление кнопки
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
             });
-        }
+            
+            // Проверка формы
+            function validateForm() {
+                let isValid = true;
+                
+                // Проверяем все обязательные поля
+                const requiredFields = [
+                    'tour_name', 'tour_date', 'customer_name', 
+                    'customer_phone', 'customer_email', 'people_count'
+                ];
+                
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    const error = document.getElementById(fieldId + '_error');
+                    
+                    if (!field.value) {
+                        isValid = false;
+                        error.style.display = 'block';
+                    } else {
+                        error.style.display = 'none';
+                    }
+                });
+                
+                // Проверяем email
+                const email = document.getElementById('customer_email');
+                const emailError = document.getElementById('customer_email_error');
+                if (email.value && !email.value.includes('@')) {
+                    isValid = false;
+                    emailError.textContent = 'Введите правильный email';
+                    emailError.style.display = 'block';
+                }
+                
+                // Проверяем количество людей
+                const people = document.getElementById('people_count');
+                const peopleError = document.getElementById('people_count_error');
+                if (people.value && (people.value < 1 || people.value > 10)) {
+                    isValid = false;
+                    peopleError.textContent = 'От 1 до 10 человек';
+                    peopleError.style.display = 'block';
+                }
+                
+                return isValid;
+            }
+            
+            // Отправка формы
+            function sendForm() {
+                const formData = new FormData(form);
+                const button = form.querySelector('button');
+                
+                // Меняем текст кнопки
+                button.textContent = 'Отправка...';
+                button.disabled = true;
+                
+                // Отправляем на сервер
+                fetch('https://httpbin.org/post', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Показываем успех
+                    successMessage.style.display = 'block';
+                    form.reset();
+                    
+                    // Возвращаем кнопку
+                    setTimeout(() => {
+                        button.textContent = 'Отправить заявку';
+                        button.disabled = false;
+                    }, 2000);
+                })
+                .catch(error => {
+                    alert('Ошибка отправки');
+                    button.textContent = 'Отправить заявку';
+                    button.disabled = false;
+                });
+            }
+            
+            // Убираем ошибки при вводе
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const error = document.getElementById(this.id + '_error');
+                    if (error) {
+                        error.style.display = 'none';
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
