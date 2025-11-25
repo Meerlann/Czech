@@ -1,4 +1,3 @@
-javascript
 // Данные для туров
 const toursData = [
     {
@@ -38,7 +37,7 @@ const toursData = [
         price: "22 000 руб.",
         duration: "4 дня",
         season: "Круглый год",
-        image: "https://avatars.mds.yandex.net/get-entity_search/1588666309999-ef3c1c6f55fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        image: "https://images.unsplash.com/photo-1588666309999-ef3c1c6f55fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         link: "booking.html"
     },
     {
@@ -48,7 +47,7 @@ const toursData = [
         price: "28 000 руб.",
         duration: "5 дней",
         season: "Круглый год",
-        image: "https://avatars.mds.yandex.net/get-entity_search/2223725/431971944/S600xU_2x",
+        image: "https://images.unsplash.com/photo-1547891657-e0c8ddd8b5c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         link: "booking.html"
     },
     {
@@ -58,7 +57,7 @@ const toursData = [
         price: "35 000 руб.",
         duration: "6 дней",
         season: "Круглый год",
-        image: "https://extraguide.ru/images/sp/fcb5f61e9e982200ed393a7749fbbe9663bbb4ea.jpg",
+        image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         link: "booking.html"
     },
     {
@@ -88,7 +87,7 @@ const toursData = [
         price: "19 000 руб.",
         duration: "2 дня",
         season: "Круглый год",
-        image: "https://avatars.mds.yandex.net/get-entity_search/1580584126903-c17dab3041e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+        image: "https://images.unsplash.com/photo-1580584126903-c17dab3041e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         link: "booking.html"
     },
     {
@@ -162,13 +161,8 @@ function renderTours() {
         toursContainer.innerHTML = toursData.map(tour => createTourCard(tour)).join('');
     }
 }
-});
-    
-    const toursContainer = document.getElementById('tours-container');
-    toursContainer.innerHTML = filteredTours.map(tour => createTourCard(tour)).join('');
-}
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     renderTours();
-    });
+});
